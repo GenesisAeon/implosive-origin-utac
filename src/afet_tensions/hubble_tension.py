@@ -33,8 +33,8 @@ class HubbleTension:
 
     def tension_sigma(self) -> float:
         """Tension in σ units between local and CMB H₀ (simplified)."""
-        combined_uncertainty = (0.5**2 + 0.3**2) ** 0.5
-        return abs(H0_LOCAL - H0_CMB) / combined_uncertainty
+        combined_uncertainty: float = (0.5**2 + 0.3**2) ** 0.5
+        return float(abs(H0_LOCAL - H0_CMB) / combined_uncertainty)
 
     def afet_resolves_tension(self, sigma_threshold: float = 2.0) -> bool:
         """True if AFET β-hierarchy reduces tension below sigma_threshold.
@@ -43,9 +43,9 @@ class HubbleTension:
         and local values should be < sigma_threshold σ.
         """
         delta = abs(self._model.h0_local_predicted() - self._model.h0_cmb_predicted())
-        combined_uncertainty = (0.5**2 + 0.3**2) ** 0.5
+        combined_uncertainty: float = (0.5**2 + 0.3**2) ** 0.5
         residual_sigma = delta / combined_uncertainty
-        return residual_sigma < sigma_threshold
+        return bool(residual_sigma < sigma_threshold)
 
     def summary(self) -> dict[str, float | bool]:
         return {

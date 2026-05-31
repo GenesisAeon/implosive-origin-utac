@@ -193,10 +193,10 @@ class AFETTensions:
     # Convenience accessors
     # ------------------------------------------------------------------
 
-    def hubble_summary(self) -> dict[str, object]:
+    def hubble_summary(self) -> dict[str, float | bool]:
         return self._hubble.summary()
 
-    def s8_summary(self) -> dict[str, object]:
+    def s8_summary(self) -> dict[str, float | bool]:
         return self._s8.summary()
 
     def ligo_summary(self) -> dict[str, object]:
