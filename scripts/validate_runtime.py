@@ -117,7 +117,9 @@ def validate_runtime(data: Any) -> list[str]:
     if coupling.get("enabled"):
         transport = coupling.get("transport", "none")
         if transport not in ("nats", "none"):
-            errors.append(f"coupling.transport muss 'nats' oder 'none' sein. Erhalten: '{transport}'")
+            errors.append(
+                f"coupling.transport muss 'nats' oder 'none' sein. Erhalten: '{transport}'"
+            )
         else:
             _ok(f"coupling.transport = '{transport}'")
 
