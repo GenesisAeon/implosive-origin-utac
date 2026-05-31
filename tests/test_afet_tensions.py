@@ -2,18 +2,13 @@
 
 from __future__ import annotations
 
-import pytest
-
 from afet_tensions import (
-    BETA_CMB,
-    BETA_LOCAL,
     GAMMA_COSMIC,
     H0_CMB,
     H0_LOCAL,
     OMEGA_RIG_HZ,
     PACKAGE_REGISTRY_ID,
     S8_CMB,
-    S8_WEAK_LENSING,
     SIGMA_PHI,
     TENSIONS_TARGETS,
     AFETTensions,
