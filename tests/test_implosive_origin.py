@@ -2,27 +2,24 @@
 
 from __future__ import annotations
 
-import math
-
 import pytest
 
 from implosive_origin import (
-    ImplosiveOriginUTAC,
+    K_RIG_MPC,
+    PHI,
+    R_PREDICTED,
+    SIGMA_PHI,
     TYPE6_TARGETS,
-    Type6ODE,
-    Type6ODEParams,
-    InflationBridge,
+    V_RIG_KM_S,
     CMBPredictions,
+    DarkBigBang,
     DMPowerSpectrum,
     EntropyOrigin,
-    DarkBigBang,
-    PHI,
-    SIGMA_PHI,
-    V_RIG_KM_S,
-    R_PREDICTED,
-    K_RIG_MPC,
+    ImplosiveOriginUTAC,
+    InflationBridge,
+    Type6ODE,
+    Type6ODEParams,
 )
-
 
 # ---------------------------------------------------------------------------
 # Constants
@@ -254,6 +251,6 @@ def test_diamond_zenodo_record():
 
 
 def test_type6_targets_structure():
-    for key, val in TYPE6_TARGETS.items():
+    for _key, val in TYPE6_TARGETS.items():
         assert isinstance(val, tuple)
         assert len(val) == 2
