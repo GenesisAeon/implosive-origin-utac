@@ -30,7 +30,7 @@ err_console = Console(stderr=True)
 # ---------------------------------------------------------------------------
 
 
-@app.command()
+@app.command()  # type: ignore[untyped-decorator]
 def scaffold(
     project_name: Annotated[
         str, typer.Argument(help="Name of the new project (kebab-case recommended)")
@@ -118,7 +118,7 @@ def scaffold(
 # ---------------------------------------------------------------------------
 
 
-@app.command(name="list-templates")
+@app.command(name="list-templates")  # type: ignore[untyped-decorator]
 def list_templates() -> None:
     """List all available templates."""
     table = Table(title="Available Templates", show_lines=True)
@@ -139,7 +139,7 @@ def list_templates() -> None:
 # ---------------------------------------------------------------------------
 
 
-@app.command()
+@app.command()  # type: ignore[untyped-decorator]
 def validate(
     path: Annotated[Path | None, typer.Argument(help="Project directory to validate")] = None,
 ) -> None:
@@ -169,7 +169,7 @@ def validate(
 # ---------------------------------------------------------------------------
 
 
-@app.command()
+@app.command()  # type: ignore[untyped-decorator]
 def version() -> None:
     """Show the diamond-setup version."""
     console.print(f"diamond-setup [bold]{__version__}[/bold]")
