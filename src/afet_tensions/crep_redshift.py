@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-import math
-
 from .constants import GAMMA_COSMIC, KAPPA_CREP, S8_CMB, SIGMA_PHI
 
 
