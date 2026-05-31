@@ -50,7 +50,7 @@ class CREPState:
     P: float = 0.4    # productivity (speculative — lower weight)
 
     def gamma(self) -> float:
-        return (self.C * self.R * self.E * self.P) ** 0.25
+        return float((self.C * self.R * self.E * self.P) ** 0.25)
 
 
 @dataclass
