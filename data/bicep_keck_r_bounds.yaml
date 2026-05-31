@@ -1,0 +1,23 @@
+# BICEP/Keck 2021 tensor-to-scalar ratio upper bound
+# Source: BICEP/Keck Collaboration (2021), arXiv:2110.00483
+reference: "BICEP/Keck 2021 — arXiv:2110.00483"
+r_upper_95pct: 0.036
+r_best_fit: null      # no detection — consistent with r=0
+pivot_scale_Mpc_inv: 0.05
+
+# UTAC Type-6 prediction (Frame Principle)
+utac_prediction:
+  r_frame_principle: 0.003906   # σ_Φ² = (1/16)²
+  compatible: true              # 0.004 < 0.036
+  status: "SPECULATIVE"
+
+# Future experiments
+litebird:
+  target_sigma_r: 0.001
+  expected_data: "2030s"
+  utac_detectable: true         # 0.004 > 0.001
+
+cmb_s4:
+  target_sigma_r: 0.003
+  expected_data: "2030"
+  utac_detectable: true         # marginal: 0.004 ~ 0.003

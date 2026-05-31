@@ -1,85 +1,187 @@
-# diamond-setup
+# implosive-origin-utac
 
-**Universal Python project scaffold** — generate professional, CI-ready skeletons in seconds.
+[![Package](https://img.shields.io/badge/GenesisAeon-Package%2033-blueviolet)](https://doi.org/10.5281/zenodo.17472834)
+[![Zenodo](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.17472834-blue)](https://doi.org/10.5281/zenodo.17472834)
+[![Status](https://img.shields.io/badge/status-SPECULATIVE-orange)](DISCLAIMER.md)
+[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+[![Python](https://img.shields.io/badge/python-%3E%3D3.11-blue)](pyproject.toml)
 
-[![CI](https://github.com/GenesisAeon/diamond-setup/actions/workflows/ci.yml/badge.svg)](https://github.com/GenesisAeon/diamond-setup/actions/workflows/ci.yml)
-[![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-blue)](https://www.python.org)
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+**UTAC Type-6: Implosive Origin Fields — Pre-Inflationary Dark Matter**
 
-No cookiecutter, no Jinja2, no magic. Just a clean CLI that produces a fully working project — `uv sync`, `pytest`, ruff, pre-commit and CI all wired up from second one.
+GenesisAeon Package 33 · Johann Römer · MOR Research Collective · Mai 2026
+
+> **SPECULATIVE MODULE** — See [DISCLAIMER.md](DISCLAIMER.md). All predictions are
+> hypotheses awaiting observational test. Not peer-reviewed.
 
 ---
 
-## Install
+## What is this?
+
+This package implements **UTAC Type-6** (Implosive Origin Fields): a reversed
+logistic-ODE model of the pre-inflationary universe, connecting to:
+
+- **WIFI Model** (Freese et al. 2023, arXiv:2309.14412) — pre-inflationary dark matter
+- **Dark Big Bang** hypothesis (Niedermayer 2023)
+- **Frame Principle** (σ_Φ ≈ 1/16) for CMB tensor-to-scalar ratio predictions
+
+Standard UTAC describes *expansion* dynamics:
+```
+dH/dt = +r·H·(1 - H/K)·tanh(σΓ)
+```
+
+UTAC Type-6 reverses the sign — *implosive collapse* from a high-entropy
+pre-inflationary state toward the inflationary fixed point H*:
+```
+dH/dt = -r·H·(1 - H/K_min)·tanh(σΓ)
+```
+
+The Phase Transition at `H* = K_min · tanh(σΓ)` is the "ignition" of standard
+inflation — the matter-creation event.
+
+---
+
+## Falsifiable Predictions
+
+| Prediction | Value | Testable Against |
+|-----------|-------|-----------------|
+| CMB tensor-to-scalar ratio `r` | `≈ 0.004` (= σ_Φ²) | BICEP/Keck, LiteBIRD |
+| DM power spectrum suppression | `k_RIG ≈ 0.097 Mpc⁻¹` | Euclid DR1 |
+| Pre-inflation entropy ratio | `S_pre(H_max)/S_pre(H*)` | Black hole analogues |
+
+Current status vs. observations:
+- **r < 0.036** (BICEP/Keck 2021) ✓ our prediction `r ≈ 0.004` is compatible
+- **LiteBIRD** (target σ(r) ~ 0.001, 2030s) will be able to detect `r ≈ 0.004`
+
+---
+
+## Quickstart
 
 ```bash
-pip install diamond-setup
-# or
-uv tool install diamond-setup
-```
-
-## Usage
-
-```bash
-# New project with the minimal template (default)
-diamond scaffold my-lib
-
-# GenesisAeon preset (adds domains.yaml + entropy-table bridge)
-diamond scaffold my-physics-tool --template genesis --author "Ada Lovelace"
-
-# Preview what would be generated (no files written)
-diamond scaffold my-lib --dry-run
-
-# See all templates
-diamond list-templates
-
-# Validate any project directory
-diamond validate path/to/my-project
-diamond validate          # validates the current directory
-```
-
-## What you get
-
-Running `diamond scaffold my-lib` produces:
-
-```
-my-lib/
-├── src/
-│   └── my_lib/
-│       └── __init__.py       # __version__ = "0.1.0"
-├── tests/
-│   ├── __init__.py
-│   └── test_main.py
-├── .github/
-│   └── workflows/
-│       └── ci.yml            # matrix: 3.11 + 3.12
-├── pyproject.toml            # hatchling, ruff, pytest configured
-├── README.md
-├── AGENT.md                  # GenesisAeon release & metadata rules
-├── .gitignore
-└── .pre-commit-config.yaml   # ruff + standard hooks
-```
-
-Then just:
-
-```bash
-cd my-lib
+# Install (editable)
 uv sync --dev
-pre-commit install
+
+# Run tests
 uv run pytest
+
+# Try the Diamond CLI with the new template
+uv run diamond scaffold my-inflation-model --template implosive-origin
+
+# List all templates
+uv run diamond list-templates
 ```
 
-## Templates
+### Python API
 
-| Template | Description |
-|----------|-------------|
-| `minimal` | Clean Python package for everyone |
-| `genesis` | Adds `domains.yaml` + entropy-table bridge (GenesisAeon preset) |
+```python
+from implosive_origin import ImplosiveOriginUTAC
 
-## Extending
+system = ImplosiveOriginUTAC()
 
-Adding a new template is one Python file. See [docs/templates.md](docs/templates.md).
+# Run 60 e-folds of Type-6 collapse
+result = system.run_cycle(n_efolds=60)
+print(f"r (tensor-to-scalar): {result['tensor_scalar_r']:.4f}")
+print(f"k_RIG suppression:     {result['dm_suppression_k']:.3f} Mpc⁻¹")
+print(f"CREP Γ:                {result['crep_gamma']:.3f}")
+
+# CMB predictions
+from implosive_origin import CMBPredictions
+cmb = CMBPredictions()
+print(cmb.summary())
+
+# Dark matter power spectrum
+from implosive_origin import DMPowerSpectrum
+dm = DMPowerSpectrum()
+print(dm.euclid_testable())
+```
 
 ---
 
-Built with [uv](https://docs.astral.sh/uv/) · [Typer](https://typer.tiangolo.com/) · [Rich](https://rich.readthedocs.io/)
+## Repository Structure
+
+```
+implosive-origin-utac/
+├── DISCLAIMER.md                    # SPECULATIVE — read this first
+├── src/
+│   ├── implosive_origin/            # Core UTAC Type-6 module (Package 33)
+│   │   ├── system.py                # ImplosiveOriginUTAC — Diamond interface
+│   │   ├── type6_ode.py             # Reversed UTAC Type-6 ODE
+│   │   ├── inflation_bridge.py      # Connection to standard inflation
+│   │   ├── wifi_interface.py        # Interface to WIFI model (Freese et al.)
+│   │   ├── dark_big_bang.py         # Dark Big Bang scenario
+│   │   ├── cmb_predictions.py       # B-mode + tensor-to-scalar r predictions
+│   │   ├── dm_power_spectrum.py     # Dark matter power spectrum suppression
+│   │   ├── entropy_origin.py        # Pre-inflationary entropy S_pre
+│   │   └── constants.py             # α, Φ, c, σ_Φ, v_RIG, k_RIG
+│   └── diamond_setup/               # Scaffold CLI (includes implosive-origin template)
+├── data/
+│   ├── bicep_keck_r_bounds.yaml
+│   └── wifi_model_params.yaml
+├── tests/
+│   └── test_implosive_origin.py
+└── notebooks/                       # Jupyter notebook stubs
+```
+
+---
+
+## Key Constants
+
+| Symbol | Value | Meaning |
+|--------|-------|---------|
+| `Φ` | 1.6180339887 | Golden ratio |
+| `σ_Φ` | 1/16 = 0.0625 | Frame Principle |
+| `v_RIG` | ≈ 1352 km/s | c/(α⁻¹·Φ) |
+| `r` | ≈ 0.004 | σ_Φ² (CMB prediction) |
+| `k_RIG` | ≈ 0.097 Mpc⁻¹ | DM suppression scale |
+
+---
+
+## CREP Tensor State (Package 33)
+
+```
+Γ(C, R, E, P) = (C·R·E·P)^(1/4) ≈ 0.57
+  C = 0.8  (pre-inflationary coherence)
+  R = 0.7  (ODE determinism)
+  E = 0.5  (high pre-inflationary entropy)
+  P = 0.4  (speculative — lower weight)
+```
+
+---
+
+## Diamond CLI — Template
+
+```bash
+# Scaffold a new implosive-origin project
+diamond scaffold my-inflation-model --template implosive-origin --author "Johann Römer"
+
+# Dry-run preview
+diamond scaffold test-project --template implosive-origin --dry-run
+```
+
+---
+
+## References
+
+- Freese, K. et al. (2023). *WIFI: pre-inflationary dark matter.* arXiv:2309.14412
+- BICEP/Keck Collaboration (2021). *Improved constraints on primordial gravitational waves.* arXiv:2110.00483
+- Römer, J. & MOR Research Collective (2025). *UTAC v1.0.* DOI: 10.5281/zenodo.17472834
+- GenesisAeon Feldtheorie Preprint (2026). DOI: 10.5281/zenodo.17472834
+
+---
+
+## Citation
+
+```bibtex
+@software{roemer_implosive_origin_2026,
+  author    = {Römer, Johann and MOR Research Collective},
+  title     = {implosive-origin-utac: UTAC Type-6 Implosive Origin Fields},
+  year      = {2026},
+  publisher = {Zenodo},
+  doi       = {10.5281/zenodo.17472834},
+  note      = {GenesisAeon Package 33 — SPECULATIVE cosmological module}
+}
+```
+
+---
+
+*GenesisAeon · MOR Research Collective · Mai 2026*
+*"Der Mensch integriert temporal. Das LLM navigiert atemporal. Der Scope ist der gemeinsame Raum."*

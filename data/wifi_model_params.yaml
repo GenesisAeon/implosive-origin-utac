@@ -1,0 +1,22 @@
+# WIFI Model parameters — Freese et al. (2023), arXiv:2309.14412
+# Conceptual mapping to UTAC Type-6
+reference: "Freese et al. (2023) — arXiv:2309.14412"
+
+wifi_params:
+  lambda_dm: 1.0e-3         # dark matter self-coupling
+  phi_0: 1.6180339887       # initial field value (= golden ratio Φ by convention)
+  inflation_scale_GeV: 1.0e16
+
+utac_type6_mapping:
+  rho_DM_t: "H(t) in Type-6 ODE"
+  inflation_onset: "UTAC Type-6 phase transition H → H*"
+  lambda_DM: "maps to UTAC σ parameter"
+  sigma_utac_estimate: 0.0625   # σ_Φ = 1/16
+
+status: "SPECULATIVE — conceptual mapping only, not a derivation"
+
+notes: >
+  The WIFI model computes dark matter abundance created before/during inflation.
+  In UTAC Type-6, the pre-inflationary collapse of H from H_max to H* provides
+  a logistic-ODE analogue of this process. This is an exploratory framework,
+  not a rigorous derivation from WIFI model first principles.
