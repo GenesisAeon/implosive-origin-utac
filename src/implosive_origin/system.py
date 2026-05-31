@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from typing import Any
 
 from .cmb_predictions import CMBPredictions
@@ -11,10 +11,7 @@ from .constants import (
     K_RIG_MPC,
     N_EFOLDS_STANDARD,
     PACKAGE_REGISTRY_ID,
-    PHI,
-    R_PREDICTED,
     SIGMA_PHI,
-    V_RIG_KM_S,
     ZENODO_DOI,
 )
 from .dark_big_bang import DarkBigBang
@@ -23,7 +20,6 @@ from .entropy_origin import EntropyOrigin
 from .inflation_bridge import InflationBridge
 from .type6_ode import Type6ODE, Type6ODEParams
 from .wifi_interface import WIFIInterface
-
 
 TYPE6_TARGETS: dict[str, tuple[float, float | None]] = {
     "tensor_scalar_r": (0.004, 0.001),

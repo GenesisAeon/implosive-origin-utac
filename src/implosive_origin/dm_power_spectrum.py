@@ -8,7 +8,7 @@ from __future__ import annotations
 
 import math
 
-from .constants import K_RIG_MPC, V_RIG_KM_S, H0_PLANCK, C_KM_S
+from .constants import K_RIG_MPC, V_RIG_KM_S
 
 
 class DMPowerSpectrum:

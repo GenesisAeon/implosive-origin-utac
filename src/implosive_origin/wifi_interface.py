@@ -51,7 +51,7 @@ class WIFIInterface:
 
     def inflation_onset_condition(self, H: float, H_star: float) -> bool:
         """True when Type-6 system has reached the inflation onset threshold."""
-        return H <= H_star * 1.01  # within 1% of fixed point
+        return H_star * 1.01 >= H  # within 1% of fixed point
 
     def reference(self) -> str:
         return "Freese et al. (2023), arXiv:2309.14412 — WIFI Model"

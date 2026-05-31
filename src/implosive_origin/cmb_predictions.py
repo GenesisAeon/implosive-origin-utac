@@ -5,7 +5,7 @@ SPECULATIVE: All values here are theoretical predictions, not measurements.
 
 from __future__ import annotations
 
-from .constants import R_PREDICTED, R_BICEP_UPPER, SIGMA_PHI
+from .constants import R_BICEP_UPPER, SIGMA_PHI
 
 
 class CMBPredictions:

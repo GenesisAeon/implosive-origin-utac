@@ -2,17 +2,13 @@
 
 from __future__ import annotations
 
-import math
-
 from .constants import (
-    H0_PLANCK,
     K_RIG_MPC,
     M_PLANCK_GEV,
     R_BICEP_UPPER,
     R_PREDICTED,
     SIGMA_PHI,
     V_RIG_KM_S,
-    C_KM_S,
 )
 
 

@@ -9,7 +9,7 @@ from __future__ import annotations
 import math
 from dataclasses import dataclass
 
-from .constants import PHI, SIGMA_PHI, K_RIG_MPC
+from .constants import K_RIG_MPC, SIGMA_PHI
 
 
 @dataclass
@@ -58,10 +58,10 @@ class DarkBigBang:
 
     def epoch(self, H: float) -> DarkBigBangState:
         """Classify current H into a Dark Big Bang epoch."""
-        if H > self._H_star * 10:
+        if self._H_star * 10 < H:
             e = "pre-dark"
             obs = False
-        elif H > self._H_star * 1.1:
+        elif self._H_star * 1.1 < H:
             e = "threshold"
             obs = False
         else:
