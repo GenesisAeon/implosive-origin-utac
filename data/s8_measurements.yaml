@@ -1,0 +1,46 @@
+# S₈ = σ₈ √(Ωm/0.3) measurements for AFET CREP-damping validation (Package 34)
+
+measurements:
+  - name: Planck 2018 (CMB)
+    s8: 0.832
+    uncertainty: 0.013
+    z_eff: 1100.0
+    survey_type: primary_cmb
+    reference: "Planck Collaboration 2020, A&A 641 A6"
+
+  - name: KiDS-1000 (weak lensing)
+    s8: 0.766
+    uncertainty: 0.020
+    z_eff: 0.36
+    survey_type: weak_lensing
+    reference: "Asgari et al. 2021, A&A 645 A104"
+
+  - name: DES Y3 (3×2pt)
+    s8: 0.776
+    uncertainty: 0.017
+    z_eff: 0.63
+    survey_type: weak_lensing
+    reference: "DES Collaboration 2022, Phys. Rev. D 105 023520"
+
+  - name: HSC Year 3 (weak lensing)
+    s8: 0.763
+    uncertainty: 0.040
+    z_eff: 0.80
+    survey_type: weak_lensing
+    reference: "Dalal et al. 2023, Phys. Rev. D 108 123519"
+
+  - name: KiDS-1000 + DES Y3 combined
+    s8: 0.759
+    uncertainty: 0.016
+    z_eff: 0.50
+    survey_type: combined_wl
+    reference: "van den Busch et al. 2022"
+
+tension_sigma: 3.0  # approximate
+
+afet_prediction:
+  model: CREP-damped structure growth
+  s8_cmb: 0.832
+  s8_z0_predicted: 0.759
+  slope_per_z: -0.05
+  euclid_dr1_test: "S8(z) = 0.832 * (1 - 0.05*z) for z < 1.5"

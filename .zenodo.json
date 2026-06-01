@@ -1,0 +1,13 @@
+{
+  "title": "afet-tensions: AFET β-Hierarchy → Cosmological Tensions (GenesisAeon Package 34)",
+  "description": "AFET β-hierarchy model explaining the Hubble tension and S₈ discrepancy via domain-dependent effective cosmological parameters and CREP redshift evolution. Falsifiable predictions for LIGO O5, Euclid DR1, DESI DR2.",
+  "creators": [
+    {"name": "Römer, Johann", "affiliation": "MOR Research Collective"},
+    {"name": "MOR Research Collective"}
+  ],
+  "keywords": ["AFET", "CREP", "UTAC", "GenesisAeon", "Hubble tension", "S8 tension", "cosmology"],
+  "license": "MIT",
+  "related_identifiers": [
+    {"identifier": "10.5281/zenodo.17472834", "relation": "isPartOf", "scheme": "doi"}
+  ]
+}
