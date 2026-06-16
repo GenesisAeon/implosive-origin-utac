@@ -54,6 +54,22 @@ Current status vs. observations:
 
 ---
 
+## Installation
+
+```bash
+pip install implosive-origin-utac
+```
+
+Or for development:
+
+```bash
+git clone https://github.com/GenesisAeon/implosive-origin-utac.git
+cd implosive-origin-utac
+uv sync --dev
+```
+
+---
+
 ## Quickstart
 
 ```bash
@@ -159,6 +175,20 @@ diamond scaffold test-project --template implosive-origin --dry-run
 
 ---
 
+## Role in the GenesisAeon Ecosystem
+
+**Package ID:** P33 | **Domain:** cosmology (speculative) / pre-inflation dark matter
+
+`implosive-origin-utac` is position 13 in the GenesisAeon release order (Phase B — UTAC
+cluster). It sits downstream of `utac-core` (the base UTAC engine) and `implosive-genesis`,
+and provides the cosmological pre-inflationary dynamics that feed into the broader ecosystem
+(e.g. `afet-tensions`, `cosmic-web`, `universums-sim`). The Diamond Interface exposed by
+`ImplosiveOriginUTAC` connects UTAC mechanics to observable CMB and large-scale-structure
+predictions, making this package a key link between abstract criticality theory and
+falsifiable cosmological observables.
+
+---
+
 ## References
 
 - Freese, K. et al. (2023). *WIFI: pre-inflationary dark matter.* arXiv:2309.14412
@@ -169,6 +199,11 @@ diamond scaffold test-project --template implosive-origin --dry-run
 ---
 
 ## Citation
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.PLACEHOLDER.svg)](https://doi.org/10.5281/zenodo.PLACEHOLDER)
+
+> DOI will be assigned automatically on first GitHub Release once Zenodo–GitHub integration is enabled for this repo.
+> The existing DOI `10.5281/zenodo.17472834` refers to the GenesisAeon ecosystem preprint, not this package's software record.
 
 ```bibtex
 @software{roemer_implosive_origin_2026,

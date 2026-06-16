@@ -1,6 +1,6 @@
 [project]
 name = "implosive-origin-utac"
-version = "0.1.0"
+version = "1.0.0"
 description = "UTAC Type-6 Implosive Origin Fields, pre-inflationary dark matter cosmology. GenesisAeon Package 33. SPECULATIVE."
 readme = "README.md"
 license = { text = "MIT" }
@@ -12,7 +12,7 @@ keywords = [
     "scaffold", "template", "cli",
 ]
 classifiers = [
-    "Development Status :: 3 - Alpha",
+    "Development Status :: 5 - Production/Stable",
     "Intended Audience :: Science/Research",
     "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3",
@@ -26,6 +26,8 @@ dependencies = [
     "rich>=13.7.0",
     "pyyaml>=6.0",
     "pydantic>=2.7",
+    "utac-core>=1.0.0",
+    "implosive-genesis>=1.0.0",
 ]
 
 [project.optional-dependencies]
