@@ -1,64 +1,41 @@
 {
-  "title": "implosive-origin-utac: UTAC Type-6 Implosive Origin Fields (GenesisAeon Package 33)",
-  "version": "0.1.0",
-  "description": "SPECULATIVE pre-inflationary cosmological module implementing UTAC Type-6 (Implosive Origin Fields). Provides falsifiable predictions for the CMB tensor-to-scalar ratio (r ≈ 0.004 from the Frame Principle σ_Φ = 1/16) and dark matter power spectrum suppression (k_RIG ≈ 0.097 Mpc⁻¹). Connects to the WIFI Model (Freese et al. 2023, arXiv:2309.14412), the Dark Big Bang hypothesis (Niedermayer 2023), and the GenesisAeon CREP/UTAC framework. Includes Diamond scaffold CLI with implosive-origin project template.",
+  "title": "implosive-origin-utac — P33: UTAC Type-6 Implosive Origin Fields, pre-inflationary dark matter cosmology. GenesisAeon Package 33. SPECULATIVE.",
+  "description": "<p>UTAC Type-6 Implosive Origin Fields, pre-inflationary dark matter cosmology. GenesisAeon Package 33. SPECULATIVE.</p><p>Part of the <strong>GenesisAeon</strong> ecosystem (P33, domain: cosmology (speculative) / pre-inflation dark matter). </p><p>See <a href=\"https://github.com/GenesisAeon/implosive-origin-utac\">github.com/GenesisAeon/implosive-origin-utac</a> for source, documentation, and reproducibility notebooks.</p>",
   "creators": [
     {
       "name": "Römer, Johann",
-      "affiliation": "MOR Research Collective",
-      "orcid": ""
+      "affiliation": "Independent Researcher / MOR Research Collective"
     }
-  ],
-  "contributors": [
-    {
-      "name": "MOR Research Collective",
-      "type": "ResearchGroup"
-    }
-  ],
-  "keywords": [
-    "UTAC",
-    "UTAC Type-6",
-    "inflation",
-    "pre-inflation",
-    "dark matter",
-    "CREP",
-    "GenesisAeon",
-    "WIFI model",
-    "Dark Big Bang",
-    "golden ratio",
-    "Frame Principle",
-    "cosmology",
-    "CMB",
-    "tensor-to-scalar ratio",
-    "speculative physics"
   ],
   "license": "MIT",
   "upload_type": "software",
   "access_right": "open",
-  "language": "eng",
+  "keywords": [
+    "GenesisAeon",
+    "P33",
+    "cosmology (speculative) / pre-inflation dark matter",
+    "UTAC",
+    "CREP",
+    "open science",
+    "inflation",
+    "pre-inflation",
+    "dark matter",
+    "WIFI model",
+    "Dark Big Bang",
+    "CMB",
+    "tensor-to-scalar ratio",
+    "speculative physics"
+  ],
   "related_identifiers": [
     {
-      "identifier": "10.5281/zenodo.17472834",
+      "identifier": "10.5281/zenodo.19645351",
       "relation": "isPartOf",
-      "scheme": "doi",
-      "resource_type": "publication"
-    },
-    {
-      "identifier": "10.5281/zenodo.17472834",
-      "relation": "isDocumentedBy",
-      "scheme": "doi",
-      "resource_type": "publication"
-    },
-    {
-      "identifier": "arXiv:2309.14412",
-      "relation": "references",
-      "scheme": "arxiv"
-    },
-    {
-      "identifier": "arXiv:2110.00483",
-      "relation": "references",
-      "scheme": "arxiv"
+      "resource_type": "publication-article",
+      "scheme": "doi"
     }
   ],
-  "notes": "STATUS: SPECULATIVE — not peer-reviewed. All predictions are hypotheses. See DISCLAIMER.md. Part of GenesisAeon Package series P17–P39 (DOI: 10.5281/zenodo.17472834)."
+  "version": "1.0.0",
+  "communities": [
+    { "identifier": "genesisaeon" }
+  ]
 }
