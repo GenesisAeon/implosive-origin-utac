@@ -26,8 +26,8 @@ dependencies = [
     "rich>=13.7.0",
     "pyyaml>=6.0",
     "pydantic>=2.7",
-    "utac-core>=1.0.0",
-    "implosive-genesis>=1.0.0",
+    "utac-core>=0.3.1",
+    "implosive-genesis>=0.4.0",
 ]
 
 [project.optional-dependencies]
