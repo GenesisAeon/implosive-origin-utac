@@ -3,7 +3,8 @@
 [![Package](https://img.shields.io/badge/GenesisAeon-Package%2033-blueviolet)](https://doi.org/10.5281/zenodo.17472834)
 [![Zenodo](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.17472834-blue)](https://doi.org/10.5281/zenodo.17472834)
 [![Status](https://img.shields.io/badge/status-SPECULATIVE-orange)](DISCLAIMER.md)
-[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+[![License](https://img.shields.io/badge/code-GPLv3--or--later-blue)](LICENSE)
+[![Docs License](https://img.shields.io/badge/docs-CC%20BY%204.0-lightgrey)](LICENSE-DOCS)
 [![Python](https://img.shields.io/badge/python-%3E%3D3.11-blue)](pyproject.toml)
 
 **UTAC Type-6: Implosive Origin Fields — Pre-Inflationary Dark Matter**
@@ -197,6 +198,14 @@ falsifiable cosmological observables.
 - GenesisAeon Feldtheorie Preprint (2026). DOI: 10.5281/zenodo.17472834
 
 ---
+
+## License
+
+This repository is **dual-licensed**:
+
+- **Source code** — [GNU General Public License v3.0 or later (GPLv3+)](LICENSE).
+- **Documentation** (this README, `docs/`, and other prose/non-code content) —
+  [Creative Commons Attribution 4.0 International (CC BY 4.0)](LICENSE-DOCS).
 
 ## Citation
 

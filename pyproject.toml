@@ -3,7 +3,7 @@ name = "implosive-origin-utac"
 version = "1.0.0"
 description = "UTAC Type-6 Implosive Origin Fields, pre-inflationary dark matter cosmology. GenesisAeon Package 33. SPECULATIVE."
 readme = "README.md"
-license = { text = "MIT" }
+license = { text = "GPL-3.0-or-later" }
 authors = [{ name = "Johann Römer", email = "joberoemer@gmail.com" }, { name = "MOR Research Collective" }]
 requires-python = ">=3.11"
 keywords = [
@@ -14,7 +14,7 @@ keywords = [
 classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Intended Audience :: Science/Research",
-    "License :: OSI Approved :: MIT License",
+    "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",

@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Changed
+- Relicensed from MIT to dual-license: source code under GPLv3-or-later
+  (`LICENSE`), documentation under CC BY 4.0 (`LICENSE-DOCS`).
+
 ## [1.0.0] - 2026
 
 ### Added
