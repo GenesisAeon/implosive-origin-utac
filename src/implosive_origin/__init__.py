@@ -21,7 +21,7 @@ from .system import PACKAGE_REGISTRY, TYPE6_TARGETS, ImplosiveOriginUTAC
 from .type6_ode import Type6ODE, Type6ODEParams
 from .wifi_interface import WIFIInterface
 
-__version__ = "1.0.0"
+__version__ = "1.1.0"
 
 __all__ = [
     "ImplosiveOriginUTAC",

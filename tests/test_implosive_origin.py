@@ -217,13 +217,16 @@ def test_diamond_run_cycle():
 
 def test_diamond_crep_state():
     system = ImplosiveOriginUTAC()
+    system.run_cycle(n_efolds=10.0)
     crep = system.get_crep_state()
-    assert 0 < crep["gamma"] < 1
+    assert 0 < crep["Gamma"] < 1
 
 
 def test_diamond_utac_state():
     system = ImplosiveOriginUTAC()
+    system.run_cycle(n_efolds=10.0)
     utac = system.get_utac_state()
+    assert set(utac.keys()) == {"H", "H_star", "K_eff"}
     assert utac["H_star"] > 0
 
 

@@ -1,6 +1,6 @@
 [project]
 name = "implosive-origin-utac"
-version = "1.0.0"
+version = "1.1.0"
 description = "UTAC Type-6 Implosive Origin Fields, pre-inflationary dark matter cosmology. GenesisAeon Package 33. SPECULATIVE."
 readme = "README.md"
 license = { text = "GPL-3.0-or-later" }
@@ -9,7 +9,6 @@ requires-python = ">=3.11"
 keywords = [
     "UTAC", "cosmology", "inflation", "dark matter", "CREP", "GenesisAeon",
     "pre-inflation", "WIFI model", "Dark Big Bang", "golden ratio",
-    "scaffold", "template", "cli",
 ]
 classifiers = [
     "Development Status :: 5 - Production/Stable",
@@ -19,9 +18,9 @@ classifiers = [
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Topic :: Scientific/Engineering :: Physics",
-    "Topic :: Software Development :: Code Generators",
 ]
 dependencies = [
+    "diamond-setup>=2.1.0",
     "typer>=0.12.0",
     "rich>=13.7.0",
     "pyyaml>=6.0",
@@ -43,9 +42,6 @@ dev = [
     "pytest-cov>=5.0.0",
 ]
 
-[project.scripts]
-diamond = "diamond_setup.cli:app"
-
 [project.urls]
 Homepage = "https://github.com/GenesisAeon/implosive-origin-utac"
 Repository = "https://github.com/GenesisAeon/implosive-origin-utac"
@@ -57,7 +53,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/diamond_setup", "src/implosive_origin"]
+packages = ["src/implosive_origin"]
 
 [tool.ruff]
 line-length = 100
@@ -65,17 +61,17 @@ target-version = "py311"
 
 [tool.ruff.lint]
 select = ["E", "F", "B", "I", "W", "UP", "C4", "SIM"]
-ignore = ["B008"]  # typer uses function calls in defaults
+ignore = ["B008"]
 
 [tool.ruff.lint.per-file-ignores]
-"tests/**" = ["S101"]  # allow assert in tests
+"tests/**" = ["S101"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-addopts = "-v"
+addopts = "--cov=implosive_origin --cov-report=term-missing -v"
 
 [tool.coverage.run]
-source = ["src"]
+source = ["src/implosive_origin"]
 omit = ["tests/*"]
 
 [tool.mypy]
@@ -85,13 +81,8 @@ warn_return_any = true
 warn_unused_configs = true
 ignore_missing_imports = true
 
-[[tool.mypy.overrides]]
-module = "diamond_setup.cli"
-disallow_untyped_decorators = false
-
 [dependency-groups]
 dev = [
     "pytest>=9.0.2",
     "pytest-cov>=7.0.0",
 ]
-

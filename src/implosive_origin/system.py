@@ -2,8 +2,15 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass
 from typing import Any
+
+from diamond_setup.protocol import (
+    CREPState,
+    DiamondPackage,
+    UTACState,
+    ZenodoCreator,
+    ZenodoRecord,
+)
 
 from .cmb_predictions import CMBPredictions
 from .constants import (
@@ -24,9 +31,9 @@ from .wifi_interface import WIFIInterface
 TYPE6_TARGETS: dict[str, tuple[float, float | None]] = {
     "tensor_scalar_r": (0.004, 0.001),
     "inflation_efolds": (60.0, 5.0),
-    "dm_k_suppression_mpc_inv": (0.30, 0.10),  # k_RIG = v_RIG·H₀/c ≈ 0.304 Mpc⁻¹
-    "type6_fixed_point": (1.0, None),    # 1 = True (well-defined)
-    "bicep_compatible": (1.0, None),      # 1 = True
+    "dm_k_suppression_mpc_inv": (0.30, 0.10),
+    "type6_fixed_point": (1.0, None),
+    "bicep_compatible": (1.0, None),
 }
 
 PACKAGE_REGISTRY: dict[str, Any] = {
@@ -39,39 +46,16 @@ PACKAGE_REGISTRY: dict[str, Any] = {
     "status": "speculative",
 }
 
-
-@dataclass
-class CREPState:
-    """CREP tensor state for the implosive origin system."""
-
-    C: float = 0.8    # context continuity (pre-inflationary coherence)
-    R: float = 0.7    # reproducibility (ODE determinism)
-    E: float = 0.5    # entropy (pre-inflationary = high entropy)
-    P: float = 0.4    # productivity (speculative — lower weight)
-
-    def gamma(self) -> float:
-        return float((self.C * self.R * self.E * self.P) ** 0.25)
+_CREP_DEFAULTS = {"C": 0.8, "R": 0.7, "E": 0.5, "P": 0.4}
 
 
-@dataclass
-class UTACState:
-    """UTAC ODE state for the implosive origin system."""
-
-    H: float = 1.0
-    r: float = 1.0
-    K: float = 0.01
-    sigma: float = SIGMA_PHI
-    beta: float = 0.309   # Γ-coupling (domain β for cosmology)
-
-
-class ImplosiveOriginUTAC:
+class ImplosiveOriginUTAC(DiamondPackage):
     """UTAC Type-6 — Implosive Origin Fields (GenesisAeon Package 33).
-
-    Diamond interface implementing run_cycle, get_crep_state, get_utac_state,
-    get_phase_events, to_zenodo_record, tensor_to_scalar_r, dm_suppression_scale.
 
     STATUS: SPECULATIVE cosmological module. See DISCLAIMER.md.
     """
+
+    PACKAGE_ID: int = 33
 
     def __init__(
         self,
@@ -80,10 +64,12 @@ class ImplosiveOriginUTAC:
         sigma: float = SIGMA_PHI,
         gamma: float = GAMMA_INFLATION,
     ) -> None:
+        super().__init__()
         self._H_max = H_max
         self._K_min = K_min
         self._sigma = sigma
         self._gamma = gamma
+        self._n_efolds = N_EFOLDS_STANDARD
 
         self._ode = Type6ODE(Type6ODEParams(r=1.0, K_min=K_min, sigma=sigma, gamma=gamma))
         self._bridge = InflationBridge(sigma_phi=sigma)
@@ -95,78 +81,78 @@ class ImplosiveOriginUTAC:
 
         self._trajectory: list[dict[str, float]] = []
         self._phase_events: list[dict[str, object]] = []
+        self._H_star: float = 0.0
 
-    # ------------------------------------------------------------------
-    # Diamond interface
-    # ------------------------------------------------------------------
+    def run_cycle(self, n_efolds: float | None = None) -> dict[str, Any]:
+        """Run the Type-6 ODE for *n_efolds* e-folds of pre-inflationary collapse."""
+        if n_efolds is not None:
+            self._n_efolds = n_efolds
+        return super().run_cycle()
 
-    def run_cycle(self, n_efolds: float = N_EFOLDS_STANDARD) -> dict[str, object]:
-        """Run the Type-6 ODE for n_efolds e-folds of pre-inflationary collapse."""
-        states = self._ode.integrate(H0=self._H_max, t_max=n_efolds, n_steps=int(n_efolds * 100))
+    def _run_cycle(self) -> dict[str, Any]:
+        n_efolds = self._n_efolds
+        states = self._ode.integrate(
+            H0=self._H_max,
+            t_max=n_efolds,
+            n_steps=int(n_efolds * 100),
+        )
         self._trajectory = [{"t": s.t, "H": s.H, "dHdt": s.dHdt} for s in states]
 
         self._phase_events = []
-        H_star = self._ode.fixed_point()
+        self._H_star = self._ode.fixed_point()
         for s in states:
             if s.at_fixed_point:
                 self._phase_events.append({
                     "type": "inflation_onset",
                     "t": s.t,
                     "H": s.H,
-                    "H_star": H_star,
+                    "H_star": self._H_star,
                 })
                 break
 
+        crep = self._build_crep_state()
         return {
             "n_efolds_requested": n_efolds,
             "n_efolds_actual": self._ode.efolds(self._H_max),
-            "H_star": H_star,
+            "H_star": self._H_star,
             "n_steps": len(states),
             "phase_events": len(self._phase_events),
             "tensor_scalar_r": self.tensor_to_scalar_r(),
             "dm_suppression_k": self.dm_suppression_scale(),
-            "crep_gamma": self.get_crep_state()["gamma"],
+            "crep_gamma": float(crep.Gamma or 0.0),
             "status": "SPECULATIVE",
         }
 
-    def get_crep_state(self) -> dict[str, float]:
-        crep = CREPState()
-        return {
-            "C": crep.C,
-            "R": crep.R,
-            "E": crep.E,
-            "P": crep.P,
-            "gamma": crep.gamma(),
-        }
+    def _build_crep_state(self) -> CREPState:
+        return CREPState(**_CREP_DEFAULTS)
 
-    def get_utac_state(self) -> dict[str, float]:
-        state = UTACState(
-            H=self._H_max,
-            K=self._K_min,
-            sigma=self._sigma,
-            beta=self._gamma,
-        )
-        return {
-            "H": state.H,
-            "r": state.r,
-            "K": state.K,
-            "sigma": state.sigma,
-            "beta": state.beta,
-            "H_star": self._ode.fixed_point(),
-        }
+    def _build_utac_state(self) -> UTACState:
+        h_norm = min(1.0, max(0.0, self._H_max))
+        h_star = self._H_star if self._cycles_completed else self._ode.fixed_point()
+        h_star_norm = min(1.0, max(0.0, h_star / max(self._H_max, 1e-12)))
+        return UTACState(H=h_norm, H_star=h_star_norm, K_eff=max(self._K_min, 1e-6))
 
-    def get_phase_events(self) -> list[dict[str, object]]:
-        return self._phase_events
+    def _build_phase_events(self) -> list[dict[str, Any]]:
+        return list(self._phase_events)
 
-    def to_zenodo_record(self) -> dict[str, object]:
-        return {
-            "title": "UTAC Type-6: Implosive Origin Fields (Package 33)",
-            "description": (
+    def _build_zenodo_record(self) -> ZenodoRecord:
+        return ZenodoRecord(
+            title="UTAC Type-6: Implosive Origin Fields (Package 33)",
+            description=(
                 "SPECULATIVE pre-inflationary cosmological module. "
                 "Implements reversed UTAC Type-6 ODE connected to WIFI model "
                 "(Freese et al. 2023) and Dark Big Bang hypothesis. "
                 "Generates falsifiable CMB and dark matter predictions."
             ),
+            creators=[
+                ZenodoCreator(name="Römer, Johann", affiliation="MOR Research Collective"),
+            ],
+        )
+
+    def to_zenodo_record(self) -> dict[str, Any]:
+        base = super().to_zenodo_record()
+        return {
+            **base,
             "zenodo_doi": ZENODO_DOI,
             "package_id": PACKAGE_REGISTRY_ID,
             "domain": "cosmology",
@@ -178,8 +164,14 @@ class ImplosiveOriginUTAC:
             },
             "status": "speculative — not peer-reviewed",
             "keywords": [
-                "UTAC", "inflation", "dark matter", "CREP", "GenesisAeon",
-                "pre-inflation", "WIFI model", "Dark Big Bang",
+                "UTAC",
+                "inflation",
+                "dark matter",
+                "CREP",
+                "GenesisAeon",
+                "pre-inflation",
+                "WIFI model",
+                "Dark Big Bang",
             ],
         }
 
@@ -190,10 +182,6 @@ class ImplosiveOriginUTAC:
     def dm_suppression_scale(self) -> float:
         """Dark matter power-spectrum suppression wavenumber k_RIG [Mpc⁻¹]."""
         return self._dm.k_rig
-
-    # ------------------------------------------------------------------
-    # Convenience accessors
-    # ------------------------------------------------------------------
 
     def cmb_summary(self) -> dict[str, object]:
         return self._cmb.summary()

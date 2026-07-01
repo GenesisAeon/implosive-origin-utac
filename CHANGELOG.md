@@ -7,11 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [1.1.0] - 2026-07-01
+### Changed
+- `ImplosiveOriginUTAC` subclasses `diamond_setup.DiamondPackage`.
+- `diamond-setup>=2.1.0` as runtime dependency; vendored `src/diamond_setup/` removed.
+- `get_crep_state` / `get_utac_state` raise `NotConvergedError` before first `run_cycle`.
+- UTAC keys: `{H, H_star, K_eff}`; CREP key `Gamma` (was `gamma`).
+
+## [1.0.0] - 2026
+
 ### Changed
 - Relicensed from MIT to dual-license: source code under GPLv3-or-later
   (`LICENSE`), documentation under CC BY 4.0 (`LICENSE-DOCS`).
-
-## [1.0.0] - 2026
 
 ### Added
 - Initial v1.0.0 release as part of the GenesisAeon ecosystem-wide 1.0.0
