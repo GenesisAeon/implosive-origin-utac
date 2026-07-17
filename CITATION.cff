@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+type: software
+title: "implosive-origin-utac"
+version: "1.1.0"
+date-released: "2026-07-01"
+authors:
+  - family-names: Römer
+    given-names: Johann
+    email: joberoemer@gmail.com
+  - name: "MOR Research Collective"
+repository-code: "https://github.com/GenesisAeon/implosive-origin-utac"
+license: GPL-3.0-or-later
+abstract: "UTAC Type-6 Implosive Origin Fields, pre-inflationary dark matter cosmology. GenesisAeon Package 33. SPECULATIVE."
+keywords:
+  - GenesisAeon
+  - UTAC
+  - CREP
+  - open-science
+  - cosmology
+  - inflation
+  - dark matter
+  - pre-inflation
