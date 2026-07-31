@@ -141,7 +141,7 @@ class ImplosiveOriginUTAC(DiamondPackage):
             description=(
                 "SPECULATIVE pre-inflationary cosmological module. "
                 "Implements reversed UTAC Type-6 ODE connected to WIFI model "
-                "(Freese et al. 2023) and Dark Big Bang hypothesis. "
+                "(Freese et al., arXiv:2401.17371) and Dark Big Bang hypothesis. "
                 "Generates falsifiable CMB and dark matter predictions."
             ),
             creators=[

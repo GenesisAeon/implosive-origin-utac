@@ -192,7 +192,7 @@ falsifiable cosmological observables.
 
 ## References
 
-- Freese, K. et al. (2023). *WIFI: pre-inflationary dark matter.* arXiv:2309.14412
+- Freese, K. et al. *Dark Matter Production during Warm Inflation via Freeze-In (WIFI).* arXiv:2401.17371, Phys. Rev. Lett. 133, 211001 (2024)
 - BICEP/Keck Collaboration (2021). *Improved constraints on primordial gravitational waves.* arXiv:2110.00483
 - Römer, J. & MOR Research Collective (2025). *UTAC v1.0.* DOI: 10.5281/zenodo.17472834
 - GenesisAeon Feldtheorie Preprint (2026). DOI: 10.5281/zenodo.17472834

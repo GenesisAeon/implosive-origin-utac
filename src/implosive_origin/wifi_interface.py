@@ -1,4 +1,4 @@
-"""Interface to the WIFI model (Freese et al. 2023, arXiv:2309.14412).
+"""Interface to the WIFI model (Freese et al., arXiv:2401.17371, PRL 2024).
 
 SPECULATIVE: This module provides a conceptual bridge between the WIFI
 (Wave-function of Inflation / pre-inflationary dark matter) model and
@@ -54,7 +54,7 @@ class WIFIInterface:
         return H_star * 1.01 >= H  # within 1% of fixed point
 
     def reference(self) -> str:
-        return "Freese et al. (2023), arXiv:2309.14412 — WIFI Model"
+        return "Freese et al., arXiv:2401.17371 (PRL 2024) — WIFI Model"
 
     def summary(self) -> dict[str, object]:
         return {
