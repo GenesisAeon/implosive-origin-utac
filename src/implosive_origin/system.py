@@ -49,7 +49,7 @@ PACKAGE_REGISTRY: dict[str, Any] = {
 _CREP_DEFAULTS = {"C": 0.8, "R": 0.7, "E": 0.5, "P": 0.4}
 
 
-class ImplosiveOriginUTAC(DiamondPackage):
+class ImplosiveOriginUTAC(DiamondPackage):  # type: ignore[misc]
     """UTAC Type-6 — Implosive Origin Fields (GenesisAeon Package 33).
 
     STATUS: SPECULATIVE cosmological module. See DISCLAIMER.md.
@@ -87,7 +87,7 @@ class ImplosiveOriginUTAC(DiamondPackage):
         """Run the Type-6 ODE for *n_efolds* e-folds of pre-inflationary collapse."""
         if n_efolds is not None:
             self._n_efolds = n_efolds
-        return super().run_cycle()
+        return super().run_cycle()  # type: ignore[no-any-return]
 
     def _run_cycle(self) -> dict[str, Any]:
         n_efolds = self._n_efolds
@@ -141,7 +141,7 @@ class ImplosiveOriginUTAC(DiamondPackage):
             description=(
                 "SPECULATIVE pre-inflationary cosmological module. "
                 "Implements reversed UTAC Type-6 ODE connected to WIFI model "
-                "(Freese et al. 2023) and Dark Big Bang hypothesis. "
+                "(Freese et al., arXiv:2401.17371) and Dark Big Bang hypothesis. "
                 "Generates falsifiable CMB and dark matter predictions."
             ),
             creators=[

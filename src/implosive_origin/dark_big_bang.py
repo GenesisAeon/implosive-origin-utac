@@ -1,6 +1,6 @@
 """Dark Big Bang scenario within UTAC Type-6 framework.
 
-Reference: Niedermayer (2023) — Dark Big Bang hypothesis.
+Reference: Freese & Winkler (2023) — Dark Big Bang hypothesis.
 SPECULATIVE: This is a theoretical bridge, not established physics.
 """
 
