@@ -32,8 +32,8 @@ All predictions in this module are explicitly labeled. The module is **falsified
 
 ## References
 
-- WIFI Model: Freese et al. (2023), arXiv:2309.14412
-- Dark Big Bang: Niedermayer (2023)
+- WIFI Model: Freese et al., arXiv:2401.17371 (PRL 2024)
+- Dark Big Bang: Freese & Winkler (2023)
 - UTAC v1.0: DOI 10.5281/zenodo.17472834
 - BICEP/Keck r < 0.036: BICEP/Keck 2021
 
