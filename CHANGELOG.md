@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [1.1.1] - 2026-09-15
+
+### Fixed (test compatibility with diamond-setup 2.3.0)
+- `test_get_crep_state_keys` asserted an exact key set for
+  `get_crep_state()`'s output, which broke when `diamond-setup` 2.3.0
+  added an additive `bridge_adapted` field to `CREPState`. Changed to
+  a subset check so future additive protocol fields don't break this
+  test again. Found during the ecosystem-wide Gamma-circularity /
+  diamond-setup-2.3.0-compatibility review; see
+  `D:\mandala\crep-utac-afet-formalism\FOLLOWUP_TICKETS.md`.
+
 ## [1.1.0] - 2026-07-01
 ### Changed
 - `ImplosiveOriginUTAC` subclasses `diamond_setup.DiamondPackage`.
